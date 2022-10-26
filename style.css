@@ -21,7 +21,7 @@
 
   .info {
     text-align: center;
-    
+
 }
 }
 .container {
@@ -42,10 +42,10 @@ ul {
   padding: 0px;
 }
 li, h3 {
-  list-style:none;
+  list-style: none;
 }
 input,button{
-  outline:none;
+  outline: none;
 }
 button {
   background: none;
@@ -138,14 +138,14 @@ h3,
 
 /* Edit Task */
 .task-input {
-  display:none
+  display: none
 }
 
 .task-item.edit-mode .task-input {
-  display:inline-block;
-  width:224px
+  display: inline-block;
+  width: 224px
 }
 
 .task-list .task-item.edit-mode .label {
-  display:none;
+  display: none;
 }
