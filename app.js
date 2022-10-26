@@ -34,17 +34,20 @@ var createNewTaskElement=function(taskString){
 
   label.innerText=taskString;
   label.className="task";
+  label.classList.add("label");
 
   //Each elements, needs appending
   checkBox.type="checkbox";
   editInput.type="text";
   editInput.className="task";
+  editInput.classList.add("task-input")
 
   editButton.innerText="Edit"; //innerText encodes special characters, HTML does not.
   editButton.className="edit";
 
   deleteButton.className="delete";
   deleteButtonImg.src="./remove.svg";
+  deleteButtonImg.classList.add("delete-img")
   deleteButton.appendChild(deleteButtonImg);
 
 
@@ -54,6 +57,7 @@ var createNewTaskElement=function(taskString){
   listItem.appendChild(editInput);
   listItem.appendChild(editButton);
   listItem.appendChild(deleteButton);
+  listItem.classList.add("task-item");
   return listItem;
 }
 
@@ -85,7 +89,7 @@ var editTask=function(){
   var editInput=listItem.querySelector("input[type=text]");
   var label=listItem.querySelector("label");
   var editBtn=listItem.querySelector(".edit");
-  var containsClass=listItem.classList.contains("editMode");
+  var containsClass=listItem.classList.contains("edit-mode");
   //If class of the parent is .editmode
   if(containsClass){
 
@@ -99,7 +103,7 @@ var editTask=function(){
   }
 
   //toggle .editmode on the parent.
-  listItem.classList.toggle("editMode");
+  listItem.classList.toggle("edit-mode");
 };
 
 
@@ -121,6 +125,9 @@ var taskCompleted=function(){
 
   //Append the task list item to the #completed-tasks
   var listItem=this.parentNode;
+  if (listItem.classList.contains("edit-mode")) listItem.classList.toggle("edit-mode");
+  listItem.querySelector(".edit").innerText="Edit";
+  listItem.querySelector("label").classList.add("completed-task-label")
   completedTasksHolder.appendChild(listItem);
   bindTaskEvents(listItem, taskIncomplete);
 
@@ -133,6 +140,7 @@ var taskIncomplete=function(){
   //When the checkbox is unchecked
   //Append the task list item to the #incompleteTasks.
   var listItem=this.parentNode;
+  listItem.querySelector("label").classList.remove("completed-task-label")
   incompleteTaskHolder.appendChild(listItem);
   bindTaskEvents(listItem,taskCompleted);
 }
